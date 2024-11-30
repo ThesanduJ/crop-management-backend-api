@@ -1,0 +1,56 @@
+package lk.ijse.crop.management.controller;
+
+import lk.ijse.crop.management.dto.impl.CropDTO;
+import lk.ijse.crop.management.exceptions.DataPersisException;
+import lk.ijse.crop.management.service.CropService;
+import lk.ijse.crop.management.util.AppUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+@RestController
+@RequestMapping("api/crops")
+public class CropController {
+    @Autowired
+    private CropService cropService;
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void> saveCrop(
+            @RequestPart("cropCode")String cropCode,
+            @RequestPart("cropCommonName")String cropCommonName,
+            @RequestPart("cropScientificName" )String cropScientificName,
+            @RequestPart("cropImage") MultipartFile cropImage,
+            @RequestPart("cropCategory")String cropCategory,
+            @RequestPart("cropSeason")String cropSeason
+    ){
+        // profilePic ----> Base64
+        String base64ProPic = "";
+        try{
+            byte [] bytesProPic = cropImage.getBytes();
+            base64ProPic = AppUtil.profilePicToBase64(bytesProPic);
+
+            CropDTO cropDTO = new CropDTO();
+            cropDTO.setCropCode(cropCode);
+            cropDTO.setCropCommonName(cropCommonName);
+            cropDTO.setCropScientificName(cropScientificName);
+            cropDTO.setCropImage(base64ProPic);
+            cropDTO.setCropCategory(cropCategory);
+            cropDTO.setCropSeason(cropSeason);
+
+            cropService.saveCrop(cropDTO);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+
+        } catch (DataPersisException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+}
