@@ -23,7 +23,6 @@ public class CropController {
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void> saveCrop(
-            @RequestPart("cropCode") String cropCode,
             @RequestPart("cropCommonName") String cropCommonName,
             @RequestPart("cropScientificName") String cropScientificName,
             @RequestPart("cropImage") MultipartFile cropImage,
@@ -35,6 +34,7 @@ public class CropController {
         try {
             byte[] bytesProPic = cropImage.getBytes();
             base64ProPic = AppUtil.profilePicToBase64(bytesProPic);
+            String cropCode=AppUtil.generateCropID();
 
             CropDTO cropDTO = new CropDTO();
             cropDTO.setCropCode(cropCode);
