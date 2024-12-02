@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "crop")
 public class CropEntity implements SuperEntity {
     @Id
-    private String  cropCode;
+    private String cropCode;
     private String cropCommonName;
     private String cropScientificName;
     @Column(columnDefinition = "LONGTEXT")

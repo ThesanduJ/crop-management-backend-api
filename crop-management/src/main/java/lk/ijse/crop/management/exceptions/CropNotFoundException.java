@@ -6,6 +6,7 @@ public class CropNotFoundException extends RuntimeException {
 
     public CropNotFoundException(String message, Throwable cause) {
     }
+
     public CropNotFoundException(String message) {
     }
 }
