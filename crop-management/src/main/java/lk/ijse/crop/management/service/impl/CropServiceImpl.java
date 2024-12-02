@@ -21,27 +21,40 @@ public class CropServiceImpl implements CropService {
     private CropDAO cropDAO;
     @Autowired
     private Mapping mapping;
+
     @Override
     public void saveCrop(CropDTO cropDTO) {
-        CropEntity saveCrop=cropDAO.save(mapping.toCropEntity(cropDTO));
-        if (saveCrop==null){
+        CropEntity saveCrop = cropDAO.save(mapping.toCropEntity(cropDTO));
+        if (saveCrop == null) {
             throw new DataPersisException("Crop not saved");
         }
     }
 
     @Override
     public void deleteCrop(String cropID) {
-        Optional<CropEntity> crop=cropDAO.findById(cropID);
-        if (!crop.isPresent()){
-            throw new CropNotFoundException("Crop with id "+cropID+" not found");
-        }else {
+        Optional<CropEntity> crop = cropDAO.findById(cropID);
+        if (!crop.isPresent()) {
+            throw new CropNotFoundException("Crop with id " + cropID + " not found");
+        } else {
             cropDAO.deleteById(cropID);
         }
     }
 
     @Override
     public List<CropDTO> getAllCrops() {
-        List<CropEntity> allCrops=cropDAO.findAll();
+        List<CropEntity> allCrops = cropDAO.findAll();
         return mapping.asCropDTOList(allCrops);
+    }
+
+    @Override
+    public void updateCrop(String cropID, CropDTO cropDTO) {
+        Optional<CropEntity> crop = cropDAO.findById(cropID);
+        if (crop.isPresent()) {
+            crop.get().setCropCommonName(cropDTO.getCropCommonName());
+            crop.get().setCropScientificName(cropDTO.getCropScientificName());
+            crop.get().setCropImage(cropDTO.getCropImage());
+            crop.get().setCropCategory(cropDTO.getCropCategory());
+            crop.get().setCropSeason(cropDTO.getCropSeason());
+        }
     }
 }
