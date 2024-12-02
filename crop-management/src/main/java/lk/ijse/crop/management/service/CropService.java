@@ -4,4 +4,5 @@ import lk.ijse.crop.management.dto.impl.CropDTO;
 
 public interface CropService {
     void saveCrop(CropDTO cropDTO);
+    void deleteCrop(String cropID);
 }
