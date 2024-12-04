@@ -1,5 +1,6 @@
 package lk.ijse.crop.management.dto.impl;
 
+import lk.ijse.crop.management.dto.StaffStatus;
 import lk.ijse.crop.management.entity.Gender;
 import lk.ijse.crop.management.entity.Role;
 import lombok.AllArgsConstructor;
@@ -11,14 +12,14 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class StaffDTO {
+public class StaffDTO implements StaffStatus {
     private String staffID;
     private String staffFName;
     private String staffLName;
     private String designation;
     private Gender gender;
-    private Date joinedDate;
-    private Date dob;
+    private String joinedDate;
+    private String dob;
     private String addressLine1;
     private String addressLine2;
     private String city;
