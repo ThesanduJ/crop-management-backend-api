@@ -25,8 +25,10 @@ public class StaffEntity implements SuperEntity {
     private String staffLName;
     private String designation;
     private Gender gender;
-    private Date joinedDate;
-    private Date dob;
+    @Column(columnDefinition = "Date")
+    private String joinedDate;
+    @Column(columnDefinition = "Date")
+    private String dob;
     private String addressLine1;
     private String addressLine2;
     private String city;
