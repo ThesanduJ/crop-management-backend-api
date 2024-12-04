@@ -4,16 +4,14 @@ import lk.ijse.crop.management.dto.impl.StaffDTO;
 import lk.ijse.crop.management.entity.Gender;
 import lk.ijse.crop.management.entity.Role;
 import lk.ijse.crop.management.exceptions.DataPersisException;
+import lk.ijse.crop.management.exceptions.StaffNotFoundException;
 import lk.ijse.crop.management.service.StaffService;
 import lk.ijse.crop.management.util.AppUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
@@ -62,6 +60,19 @@ public class StaffController {
         } catch (DataPersisException e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @DeleteMapping(value = "/{staffID}")
+    public ResponseEntity<Void> deleteStaff(@PathVariable("staffID") String staffID){
+        try{
+            staffService.deleteStaff(staffID);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (StaffNotFoundException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

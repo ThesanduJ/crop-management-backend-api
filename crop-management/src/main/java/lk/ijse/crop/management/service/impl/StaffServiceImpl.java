@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.swing.text.html.Option;
+import java.util.Optional;
+
 @Service
 @Transactional
 public class StaffServiceImpl implements StaffService {
@@ -22,6 +25,16 @@ public class StaffServiceImpl implements StaffService {
         StaffEntity saveStaff=staffDAO.save(mapping.toStaffEntity(staffDTO));
         if (saveStaff==null){
             throw new DataPersisException("Staff Not Saved");
+        }
+    }
+
+    @Override
+    public void deleteStaff(String staffID) {
+        Optional<StaffEntity> staffExists =staffDAO.findById(staffID);
+        if (!staffExists.isPresent()){
+            throw new DataPersisException("Staff with ID " + staffID + " Not Found");
+        }else {
+            staffDAO.deleteById(staffID);
         }
     }
 }
