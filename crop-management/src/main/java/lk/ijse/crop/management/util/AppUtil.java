@@ -8,21 +8,33 @@ public class AppUtil {
         return Base64.getEncoder().encodeToString(profilePic);
     }
     public static String generateCropID(){
-        return "CROP-"+ UUID.randomUUID();
+        String uuid = UUID.randomUUID().toString();
+        String shortUUID = uuid.substring(0, 5); // Take the first 8 characters of the UUID
+        return "CROP-" + shortUUID;
     }
     public static String generateStaffID(){
-        return "STAFF-"+ UUID.randomUUID();
+        String uuid = UUID.randomUUID().toString();
+        String shortUUID = uuid.substring(0, 5); // Take the first 8 characters of the UUID
+        return "STAFF-" + shortUUID;
     }
     public static String generateLogID(){
-        return "LOG-"+ UUID.randomUUID();
+        String uuid = UUID.randomUUID().toString();
+        String shortUUID = uuid.substring(0, 5); // Take the first 8 characters of the UUID
+        return "LOG-" + shortUUID;
     }
     public static String generateVehicleID(){
-        return "VEHICLE-"+ UUID.randomUUID();
+        String uuid = UUID.randomUUID().toString();
+        String shortUUID = uuid.substring(0, 5); // Take the first 8 characters of the UUID
+        return "VEHICLE-" + shortUUID;
     }
     public static String generateEquipmentID(){
-        return "EQUIPMENT-"+ UUID.randomUUID();
+        String uuid = UUID.randomUUID().toString();
+        String shortUUID = uuid.substring(0, 5); // Take the first 8 characters of the UUID
+        return "TOOL-" + shortUUID;
     }
     public static String generateFieldID(){
-        return "FIELD-"+ UUID.randomUUID();
+        String uuid = UUID.randomUUID().toString();
+        String shortUUID = uuid.substring(0, 5); // Take the first 8 characters of the UUID
+        return "FIELD-" + shortUUID;
     }
 }
