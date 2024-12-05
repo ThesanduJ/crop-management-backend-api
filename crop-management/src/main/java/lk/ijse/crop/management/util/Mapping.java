@@ -1,8 +1,10 @@
 package lk.ijse.crop.management.util;
 
 import lk.ijse.crop.management.dto.impl.CropDTO;
+import lk.ijse.crop.management.dto.impl.LogDTO;
 import lk.ijse.crop.management.dto.impl.StaffDTO;
 import lk.ijse.crop.management.entity.impl.CropEntity;
+import lk.ijse.crop.management.entity.impl.LogEntity;
 import lk.ijse.crop.management.entity.impl.StaffEntity;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -25,6 +27,7 @@ public class Mapping {
         return modelMapper.map(cropEntities, new TypeToken<List<CropDTO>>() {
         }.getType());
     }
+
     // for staff mapping
     public StaffEntity toStaffEntity(StaffDTO staffDTO) {
         return modelMapper.map(staffDTO, StaffEntity.class);
@@ -32,6 +35,16 @@ public class Mapping {
 
     public List<StaffDTO> asStaffDTOList(List<StaffEntity> staffEntities) {
         return modelMapper.map(staffEntities, new TypeToken<List<StaffDTO>>() {
+        }.getType());
+    }
+
+    //for log mapping
+    public LogEntity toLogEntity(LogDTO logDTO) {
+        return modelMapper.map(logDTO, LogEntity.class);
+    }
+
+    public List<LogDTO> asLogDTOList(List<LogEntity> logEntities) {
+        return modelMapper.map(logEntities, new TypeToken<List<LogDTO>>() {
         }.getType());
     }
 
