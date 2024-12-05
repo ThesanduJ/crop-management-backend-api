@@ -8,4 +8,6 @@ public interface EquipmentService {
     void saveEquipment(EquipmentDTO equipmentDTO);
     void deleteEquipment(String equipmentId);
     List<EquipmentDTO> getAllEquipment();
+    void updateEquipment(String equipmentId,EquipmentDTO equipmentDTO);
+
 }

@@ -64,4 +64,23 @@ public class EquipmentController {
     public List<EquipmentDTO> getAllEquipment(){
         return equipmentService.getAllEquipment();
     }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping(value = "/{equipmentID}",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public void updateEquipment(
+            @RequestPart("equipmentName") String equipmentName,
+            @RequestPart("equipmentType") String equipmentType,
+            @RequestPart("equipmentStatus") String  equipmentStatus,
+
+            @PathVariable("equipmentID") String equipmentID
+    ){
+        EquipmentDTO equipmentDTO = new EquipmentDTO();
+
+        equipmentDTO.setEquipmentID(equipmentID);
+        equipmentDTO.setEquipmentName(equipmentName);
+        equipmentDTO.setEquipmentType(equipmentType);
+        equipmentDTO.setEquipmentStatus(equipmentStatus);
+        equipmentService.updateEquipment(equipmentID,equipmentDTO);
+    }
+
 }

@@ -6,6 +6,7 @@ import lk.ijse.crop.management.dto.impl.EquipmentDTO;
 import lk.ijse.crop.management.entity.impl.EquipmentEntity;
 import lk.ijse.crop.management.entity.impl.VehicleEntity;
 import lk.ijse.crop.management.exceptions.DataPersisException;
+import lk.ijse.crop.management.exceptions.EquipmentNotFoundException;
 import lk.ijse.crop.management.exceptions.StaffNotFoundException;
 import lk.ijse.crop.management.service.EquipmentService;
 import lk.ijse.crop.management.util.Mapping;
@@ -34,7 +35,7 @@ public class EquipmentServiceImpl implements EquipmentService {
     public void deleteEquipment(String equipmentId) {
         Optional<EquipmentEntity> equipmentExists = equipmentDAO.findById(equipmentId);
         if (!equipmentExists.isPresent()) {
-            throw new StaffNotFoundException("Vehicle with ID " + equipmentId + " Not Found");
+            throw new EquipmentNotFoundException("Vehicle with ID " + equipmentId + " Not Found");
         } else {
             equipmentDAO.deleteById(equipmentId);
         }
@@ -44,5 +45,15 @@ public class EquipmentServiceImpl implements EquipmentService {
     public List<EquipmentDTO> getAllEquipment() {
         List<EquipmentEntity> equipmentEntities = equipmentDAO.findAll();
         return mapping.asEquipmentDTOList(equipmentEntities);
+    }
+
+    @Override
+    public void updateEquipment(String equipmentId, EquipmentDTO equipmentDTO) {
+        Optional<EquipmentEntity> equipmentExists = equipmentDAO.findById(equipmentId);
+        if (equipmentExists.isPresent()) {
+            equipmentExists.get().setEquipmentName(equipmentDTO.getEquipmentName());
+            equipmentExists.get().setEquipmentType(equipmentDTO.getEquipmentType());
+            equipmentExists.get().setEquipmentStatus(equipmentDTO.getEquipmentStatus());
+        }
     }
 }
