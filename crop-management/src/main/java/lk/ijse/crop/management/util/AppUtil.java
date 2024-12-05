@@ -13,4 +13,7 @@ public class AppUtil {
     public static String generateStaffID(){
         return "STAFF-"+ UUID.randomUUID();
     }
+    public static String generateLogID(){
+        return "LOG-"+ UUID.randomUUID();
+    }
 }
