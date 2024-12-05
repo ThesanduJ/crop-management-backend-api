@@ -1,4 +1,6 @@
 package lk.ijse.crop.management.dto;
 
-public interface EquipmentStatus {
+import java.io.Serializable;
+
+public interface EquipmentStatus extends Serializable,SuperDTO {
 }
