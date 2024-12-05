@@ -22,4 +22,7 @@ public class AppUtil {
     public static String generateEquipmentID(){
         return "EQUIPMENT-"+ UUID.randomUUID();
     }
+    public static String generateFieldID(){
+        return "FIELD-"+ UUID.randomUUID();
+    }
 }
