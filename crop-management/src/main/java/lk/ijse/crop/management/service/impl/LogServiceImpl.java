@@ -46,5 +46,15 @@ public class LogServiceImpl implements LogService {
         return mapping.asLogDTOList(getAllLogs);
     }
 
+    @Override
+    public void updateLogs(String logID, LogDTO logDTO) {
+        Optional<LogEntity> logExists = logDAO.findById(logID);
+        if (logExists.isPresent()) {
+            logExists.get().setLogDate(logDTO.getLogDate());
+            logExists.get().setLogDetails(logDTO.getLogDetails());
+            logExists.get().setLogImage(logDTO.getLogImage());
+        }
+    }
+
 
 }

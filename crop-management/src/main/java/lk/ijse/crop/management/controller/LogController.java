@@ -70,4 +70,28 @@ public class LogController {
     public List<LogDTO> getAllLogs() {
         return logService.getAllLogs();
     }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping(value = "/{logCode}",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public void updateLogs(
+            @RequestPart("logDate") String logDate,
+            @RequestPart("logDetails") String logDetails,
+            @RequestPart("logImage") MultipartFile logImage,
+            @PathVariable("logCode")String logCode
+    ){
+        String base64ProPic = "";
+
+        try {
+            byte [] bytesProPic = logImage.getBytes();
+            base64ProPic = AppUtil.profilePicToBase64(bytesProPic);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        LogDTO logDTO = new LogDTO();
+        logDTO.setLogCode(logCode);
+        logDTO.setLogDate(logDate);
+        logDTO.setLogDetails(logDetails);
+        logDTO.setLogImage(base64ProPic);
+        logService.saveLogs(logDTO);
+    }
 }
