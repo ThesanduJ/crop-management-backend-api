@@ -41,10 +41,10 @@ public class StaffEntity implements SuperEntity {
     @ManyToOne
     @JoinColumn(name = "fieldCode")
     private FieldEntity field;
-    @OneToMany(mappedBy = "staff")
+    @OneToMany(mappedBy = "staff",cascade = CascadeType.ALL)
     private List<VehicleEntity> vehicles;
-    @OneToMany(mappedBy = "staff")
+    @OneToMany(mappedBy = "staff",cascade = CascadeType.ALL)
     private List<EquipmentEntity> equipments;
-    @OneToMany(mappedBy="staff")
+    @OneToMany(mappedBy="staff",cascade = CascadeType.ALL)
     private List <LogEntity> logs;
 }
