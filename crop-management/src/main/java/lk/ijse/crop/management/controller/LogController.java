@@ -31,7 +31,7 @@ public class LogController {
         try {
             byte[] bytesProPic = logImage.getBytes();
             base64ProPic = AppUtil.profilePicToBase64(bytesProPic);
-            String logCode=AppUtil.generateLogID();
+            String logCode = AppUtil.generateLogID();
 
             LogDTO logDTO = new LogDTO();
 

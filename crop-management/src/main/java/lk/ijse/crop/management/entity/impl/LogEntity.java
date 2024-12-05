@@ -18,7 +18,7 @@ public class LogEntity implements SuperEntity {
     @Id
     private String logCode;
     private String logDate;
-    private String  logDetails;
-    @Column(columnDefinition = "LONGTEXT",nullable = false)
+    private String logDetails;
+    @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String logImage;
 }

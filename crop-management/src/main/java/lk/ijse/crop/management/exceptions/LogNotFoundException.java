@@ -1,6 +1,6 @@
 package lk.ijse.crop.management.exceptions;
 
-public class LogNotFoundException extends RuntimeException{
+public class LogNotFoundException extends RuntimeException {
     public LogNotFoundException() {
 
     }
