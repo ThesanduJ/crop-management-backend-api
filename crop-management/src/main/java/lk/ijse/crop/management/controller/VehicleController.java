@@ -71,5 +71,26 @@ public class VehicleController {
     public List<VehicleDTO> getAllVehicle(){
         return vehicleService.getAllVehicles();
     }
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping(value = "/{vehicleCode}",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public void updateVehicle(
+            @RequestPart("plateNumber") String plateNumber,
+            @RequestPart("vehicleCategory") String vehicleCategory,
+            @RequestPart("fuelType") String fuelType,
+            @RequestPart("status") String status,
+            @RequestPart("remarks") String remarks,
+
+            @PathVariable("vehicleCode") String vehicleCode
+    ){
+        VehicleDTO vehicleDTO = new VehicleDTO();
+
+        vehicleDTO.setVehicleCode(vehicleCode);
+        vehicleDTO.setPlateNumber(plateNumber);
+        vehicleDTO.setVehicleCategory(vehicleCategory);
+        vehicleDTO.setFuelType(fuelType);
+        vehicleDTO.setStatus(status);
+        vehicleDTO.setRemarks(remarks);
+        vehicleService.updateVehicle(vehicleCode,vehicleDTO);
+    }
 }
 

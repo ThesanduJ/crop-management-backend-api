@@ -44,4 +44,16 @@ public class VehicleServiceImpl implements VehicleService {
         List<VehicleEntity> allVehicles = vehicleDAO.findAll();
         return mapping.asVehicleDTOList(allVehicles);
     }
+
+    @Override
+    public void updateVehicle(String vehicleID, VehicleDTO vehicleDTO) {
+        Optional<VehicleEntity> vehicleExists = vehicleDAO.findById(vehicleID);
+        if (vehicleExists.isPresent()) {
+            vehicleExists.get().setPlateNumber(vehicleDTO.getPlateNumber());
+            vehicleExists.get().setVehicleCategory(vehicleDTO.getVehicleCategory());
+            vehicleExists.get().setFuelType(vehicleDTO.getFuelType());
+            vehicleExists.get().setStatus(vehicleDTO.getStatus());
+            vehicleExists.get().setRemarks(vehicleDTO.getRemarks());
+        }
+    }
 }
