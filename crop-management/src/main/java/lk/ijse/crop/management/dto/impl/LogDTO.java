@@ -13,4 +13,7 @@ public class LogDTO implements LogStatus {
     private String logDate;
     private String  logDetails;
     private String logImage;
+    private String fieldCode;
+    private String cropCode;
+    private String staffId;
 }

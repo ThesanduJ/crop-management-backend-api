@@ -1,8 +1,6 @@
 package lk.ijse.crop.management.entity.impl;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lk.ijse.crop.management.entity.SuperEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,4 +19,8 @@ public class VehicleEntity implements SuperEntity {
     private String fuelType;
     private String status;
     private String remarks;
+
+    @ManyToOne
+    @JoinColumn(name = "staffID", nullable = false)
+    private StaffEntity staff;
 }

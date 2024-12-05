@@ -1,9 +1,6 @@
 package lk.ijse.crop.management.entity.impl;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lk.ijse.crop.management.entity.Gender;
 import lk.ijse.crop.management.entity.Role;
 import lk.ijse.crop.management.entity.SuperEntity;
@@ -12,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -39,4 +37,14 @@ public class StaffEntity implements SuperEntity {
     @Column(unique = true, nullable = false)
     private String email;
     private Role role;
+
+    @ManyToOne
+    @JoinColumn(name = "fieldCode")
+    private FieldEntity field;
+    @OneToMany(mappedBy = "staff")
+    private List<VehicleEntity> vehicles;
+    @OneToMany(mappedBy = "staff")
+    private List<EquipmentEntity> equipments;
+    @OneToMany(mappedBy="staff")
+    private List <LogEntity> logs;
 }

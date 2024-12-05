@@ -24,7 +24,10 @@ public class LogController {
     public ResponseEntity<Void> saveLogs(
             @RequestPart("logDate") String logDate,
             @RequestPart("logDetails") String logDetails,
-            @RequestPart("logImage") MultipartFile logImage
+            @RequestPart("logImage") MultipartFile logImage,
+            @RequestPart ("fieldCode") String fieldCode,
+            @RequestPart ("cropCode") String cropCode,
+            @RequestPart ("staffId") String staffId
     ) {
         // profilePic ----> Base64
         String base64ProPic = "";
@@ -39,6 +42,9 @@ public class LogController {
             logDTO.setLogDate(logDate);
             logDTO.setLogDetails(logDetails);
             logDTO.setLogImage(base64ProPic);
+            logDTO.setFieldCode(fieldCode);
+            logDTO.setCropCode(cropCode);
+            logDTO.setStaffId(staffId);
 
             logService.saveLogs(logDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -77,6 +83,9 @@ public class LogController {
             @RequestPart("logDate") String logDate,
             @RequestPart("logDetails") String logDetails,
             @RequestPart("logImage") MultipartFile logImage,
+            @RequestPart ("fieldCode") String fieldCode,
+            @RequestPart ("cropCode") String cropCode,
+            @RequestPart ("staffId") String staffId,
             @PathVariable("logCode")String logCode
     ){
         String base64ProPic = "";
@@ -92,6 +101,9 @@ public class LogController {
         logDTO.setLogDate(logDate);
         logDTO.setLogDetails(logDetails);
         logDTO.setLogImage(base64ProPic);
+        logDTO.setFieldCode(fieldCode);
+        logDTO.setCropCode(cropCode);
+        logDTO.setStaffId(staffId);
         logService.saveLogs(logDTO);
     }
 }

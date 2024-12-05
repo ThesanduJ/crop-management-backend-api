@@ -1,8 +1,6 @@
 package lk.ijse.crop.management.entity.impl;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lk.ijse.crop.management.entity.SuperEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,4 +17,11 @@ public class EquipmentEntity implements SuperEntity {
     private String equipmentName;
     private String equipmentType;
     private String equipmentStatus;
+
+    @ManyToOne
+    @JoinColumn(name = "staffID")
+    private StaffEntity staff;
+    @ManyToOne
+    @JoinColumn(name = "fieldCode")
+    private FieldEntity field;
 }

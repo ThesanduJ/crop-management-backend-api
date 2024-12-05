@@ -1,9 +1,6 @@
 package lk.ijse.crop.management.entity.impl;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lk.ijse.crop.management.entity.SuperEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,4 +18,14 @@ public class LogEntity implements SuperEntity {
     private String logDetails;
     @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String logImage;
+
+    @ManyToOne
+    @JoinColumn(name = "fieldCode", nullable = false)
+    private FieldEntity field;
+    @ManyToOne
+    @JoinColumn(name = "cropCode", nullable = false)
+    private CropEntity crop;
+    @ManyToOne
+    @JoinColumn(name = "staffID", nullable = false)
+    private StaffEntity staff;
 }
