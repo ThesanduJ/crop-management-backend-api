@@ -3,7 +3,6 @@ package lk.ijse.crop.management.controller;
 import lk.ijse.crop.management.dto.impl.LogDTO;
 import lk.ijse.crop.management.exceptions.DataPersisException;
 import lk.ijse.crop.management.exceptions.LogNotFoundException;
-import lk.ijse.crop.management.exceptions.StaffNotFoundException;
 import lk.ijse.crop.management.service.LogService;
 import lk.ijse.crop.management.util.AppUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/logs")
@@ -50,9 +51,10 @@ public class LogController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     @DeleteMapping(value = "/{logCode}")
-    public ResponseEntity<Void> deleteLogs(@PathVariable("logCode") String logID){
-        try{
+    public ResponseEntity<Void> deleteLogs(@PathVariable("logCode") String logID) {
+        try {
             logService.deleteLogs(logID);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (LogNotFoundException e) {
@@ -62,5 +64,10 @@ public class LogController {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<LogDTO> getAllLogs() {
+        return logService.getAllLogs();
     }
 }
