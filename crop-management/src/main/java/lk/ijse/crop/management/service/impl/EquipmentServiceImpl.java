@@ -12,6 +12,7 @@ import lk.ijse.crop.management.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,5 +38,11 @@ public class EquipmentServiceImpl implements EquipmentService {
         } else {
             equipmentDAO.deleteById(equipmentId);
         }
+    }
+
+    @Override
+    public List<EquipmentDTO> getAllEquipment() {
+        List<EquipmentEntity> equipmentEntities = equipmentDAO.findAll();
+        return mapping.asEquipmentDTOList(equipmentEntities);
     }
 }

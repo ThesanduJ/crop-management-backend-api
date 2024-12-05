@@ -1,6 +1,7 @@
 package lk.ijse.crop.management.controller;
 
 import lk.ijse.crop.management.dto.impl.EquipmentDTO;
+import lk.ijse.crop.management.dto.impl.VehicleDTO;
 import lk.ijse.crop.management.exceptions.DataPersisException;
 import lk.ijse.crop.management.exceptions.EquipmentNotFoundException;
 import lk.ijse.crop.management.exceptions.VehicleNotFoundException;
@@ -11,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/equipment")
@@ -56,5 +59,9 @@ public class EquipmentController {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<EquipmentDTO> getAllEquipment(){
+        return equipmentService.getAllEquipment();
     }
 }
