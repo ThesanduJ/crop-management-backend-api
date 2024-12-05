@@ -45,4 +45,16 @@ public class FieldServiceImpl implements FieldService {
         List<FieldEntity> fieldEntities = fieldDAO.findAll();
         return mapping.asFieldDTOList(fieldEntities);
     }
+
+    @Override
+    public void updateField(String fieldID, FieldDTO fieldDTO) {
+        Optional<FieldEntity> field = fieldDAO.findById(fieldID);
+        if (field.isPresent()){
+            field.get().setFieldName(fieldDTO.getFieldName());
+            field.get().setFieldLocation(fieldDTO.getFieldLocation());
+            field.get().setFieldExtentSize(fieldDTO.getFieldExtentSize());
+            field.get().setFieldImage01(fieldDTO.getFieldImage01());
+            field.get().setFieldImage02(fieldDTO.getFieldImage02());
+        }
+    }
 }

@@ -81,5 +81,40 @@ public class FieldController {
     public List<FieldDTO> getAllFields() {
         return fieldService.getAllFields();
     }
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping(value = "/{fieldCode}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public void updateField(
+            @RequestPart("fieldName") String fieldName,
+            @RequestPart("fieldLocation") String fieldLocation,
+            @RequestPart("fieldExtentSize") String fieldExtentSize,
+            @RequestPart("fieldImage01") MultipartFile fieldImage01,
+            @RequestPart("fieldImage02") MultipartFile fieldImage02,
+
+            @PathVariable("fieldCode") String fieldCode
+    ){
+        // profilePic ----> Base64
+        String base64ProPic = "";
+        String base64ProPic2 = "";
+
+        try {
+            byte[] bytesProPic = fieldImage01.getBytes();
+            base64ProPic = AppUtil.profilePicToBase64(bytesProPic);
+
+            byte[] bytesProPic2 = fieldImage02.getBytes();
+            base64ProPic2 = AppUtil.profilePicToBase64(bytesProPic2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+            FieldDTO fieldDTO=new FieldDTO();
+
+            fieldDTO.setFieldCode(fieldCode);
+            fieldDTO.setFieldName(fieldName);
+            fieldDTO.setFieldLocation(fieldLocation);
+            fieldDTO.setFieldExtentSize(fieldExtentSize);
+            fieldDTO.setFieldImage01(base64ProPic);
+            fieldDTO.setFieldImage02(base64ProPic2);
+
+            fieldService.updateField(fieldCode,fieldDTO);
+    }
 
 }
