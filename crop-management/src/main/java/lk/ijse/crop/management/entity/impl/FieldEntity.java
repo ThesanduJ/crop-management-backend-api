@@ -1,5 +1,6 @@
 package lk.ijse.crop.management.entity.impl;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -18,7 +19,9 @@ public class FieldEntity implements SuperEntity {
     private String fieldCode;
     private String fieldName;
     private String fieldLocation;
-    private double fieldExtentSize;
+    private String fieldExtentSize;
+    @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String fieldImage01;
+    @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String fieldImage02;
 }
