@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,5 +38,11 @@ public class FieldServiceImpl implements FieldService {
         }else {
             fieldDAO.deleteById(fieldID);
         }
+    }
+
+    @Override
+    public List<FieldDTO> getAllFields() {
+        List<FieldEntity> fieldEntities = fieldDAO.findAll();
+        return mapping.asFieldDTOList(fieldEntities);
     }
 }
