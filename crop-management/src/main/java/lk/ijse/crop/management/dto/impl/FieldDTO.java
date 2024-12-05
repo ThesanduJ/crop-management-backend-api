@@ -12,7 +12,7 @@ public class FieldDTO implements FieldStatus {
     private String fieldCode;
     private String fieldName;
     private String fieldLocation;
-    private double fieldExtentSize;
+    private String fieldExtentSize;
     private String fieldImage01;
     private String fieldImage02;
 }
