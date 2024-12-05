@@ -1,13 +1,7 @@
 package lk.ijse.crop.management.util;
 
-import lk.ijse.crop.management.dto.impl.CropDTO;
-import lk.ijse.crop.management.dto.impl.LogDTO;
-import lk.ijse.crop.management.dto.impl.StaffDTO;
-import lk.ijse.crop.management.dto.impl.VehicleDTO;
-import lk.ijse.crop.management.entity.impl.CropEntity;
-import lk.ijse.crop.management.entity.impl.LogEntity;
-import lk.ijse.crop.management.entity.impl.StaffEntity;
-import lk.ijse.crop.management.entity.impl.VehicleEntity;
+import lk.ijse.crop.management.dto.impl.*;
+import lk.ijse.crop.management.entity.impl.*;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +51,16 @@ public class Mapping {
 
     public List<VehicleDTO> asVehicleDTOList(List<VehicleEntity> vehicleEntities) {
         return modelMapper.map(vehicleEntities, new TypeToken<List<VehicleDTO>>() {
+        }.getType());
+    }
+
+    //for equipment mapping
+    public EquipmentEntity toEquipmentEntity(EquipmentDTO equipmentDTO) {
+        return modelMapper.map(equipmentDTO, EquipmentEntity.class);
+    }
+
+    public List<EquipmentDTO> asEquipmentDTOList(List<EquipmentEntity> equipmentEntities) {
+        return modelMapper.map(equipmentEntities, new TypeToken<List<EquipmentDTO>>() {
         }.getType());
     }
 
