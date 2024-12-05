@@ -1,4 +1,18 @@
 package lk.ijse.crop.management.dto.impl;
 
-public class FieldDTO {
+import lk.ijse.crop.management.dto.FieldStatus;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class FieldDTO implements FieldStatus {
+    private String fieldCode;
+    private String fieldName;
+    private String fieldLocation;
+    private double fieldExtentSize;
+    private String fieldImage01;
+    private String fieldImage02;
 }
