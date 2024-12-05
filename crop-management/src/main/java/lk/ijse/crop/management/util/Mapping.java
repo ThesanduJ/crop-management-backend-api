@@ -3,9 +3,11 @@ package lk.ijse.crop.management.util;
 import lk.ijse.crop.management.dto.impl.CropDTO;
 import lk.ijse.crop.management.dto.impl.LogDTO;
 import lk.ijse.crop.management.dto.impl.StaffDTO;
+import lk.ijse.crop.management.dto.impl.VehicleDTO;
 import lk.ijse.crop.management.entity.impl.CropEntity;
 import lk.ijse.crop.management.entity.impl.LogEntity;
 import lk.ijse.crop.management.entity.impl.StaffEntity;
+import lk.ijse.crop.management.entity.impl.VehicleEntity;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +47,16 @@ public class Mapping {
 
     public List<LogDTO> asLogDTOList(List<LogEntity> logEntities) {
         return modelMapper.map(logEntities, new TypeToken<List<LogDTO>>() {
+        }.getType());
+    }
+
+    //for vehicle mapping
+    public VehicleEntity toVehicleEntity(VehicleDTO vehicleDTO) {
+        return modelMapper.map(vehicleDTO, VehicleEntity.class);
+    }
+
+    public List<VehicleDTO> asVehicleDTOList(List<VehicleEntity> vehicleEntities) {
+        return modelMapper.map(vehicleEntities, new TypeToken<List<VehicleDTO>>() {
         }.getType());
     }
 
