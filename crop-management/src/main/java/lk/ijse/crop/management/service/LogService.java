@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface LogService {
     void saveLogs(LogDTO logDTO);
+    void deleteLogs(String logID);
 }
