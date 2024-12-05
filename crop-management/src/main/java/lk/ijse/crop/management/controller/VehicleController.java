@@ -3,16 +3,15 @@ package lk.ijse.crop.management.controller;
 import lk.ijse.crop.management.dto.impl.LogDTO;
 import lk.ijse.crop.management.dto.impl.VehicleDTO;
 import lk.ijse.crop.management.exceptions.DataPersisException;
+import lk.ijse.crop.management.exceptions.LogNotFoundException;
+import lk.ijse.crop.management.exceptions.VehicleNotFoundException;
 import lk.ijse.crop.management.service.VehicleService;
 import lk.ijse.crop.management.util.AppUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/vehicle")
@@ -48,6 +47,19 @@ public class VehicleController {
         } catch (DataPersisException e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @DeleteMapping(value = "/{vehicleCode}")
+    public ResponseEntity<Void> deleteVehicle(@PathVariable("vehicleCode") String vehicleCode) {
+        try {
+            vehicleService.deleteVehicle(vehicleCode);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (VehicleNotFoundException e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
