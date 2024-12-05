@@ -4,4 +4,5 @@ import lk.ijse.crop.management.dto.impl.EquipmentDTO;
 
 public interface EquipmentService {
     void saveEquipment(EquipmentDTO equipmentDTO);
+    void deleteEquipment(String equipmentId);
 }
