@@ -18,6 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/staff")
+@CrossOrigin
 public class StaffController {
     @Autowired
     private StaffService staffService;
@@ -36,8 +37,7 @@ public class StaffController {
             @RequestPart("postalCode") String postalCode,
             @RequestPart("phoneNumber") String phoneNumber,
             @RequestPart("email") String email,
-            @RequestPart("role") String role,
-            @RequestPart("fieldCode") String fieldCode
+            @RequestPart("role") String role
     ){
         try{
             String staffID= AppUtil.generateStaffID();
@@ -57,7 +57,6 @@ public class StaffController {
             staffDTO.setPhoneNumber(phoneNumber);
             staffDTO.setEmail(email);
             staffDTO.setRole(Role.valueOf(role));
-            staffDTO.setFieldCode(fieldCode);
             staffService.saveStaff(staffDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (DataPersisException e) {
@@ -102,7 +101,6 @@ public class StaffController {
             @RequestPart("phoneNumber") String phoneNumber,
             @RequestPart("email") String email,
             @RequestPart("role") String role,
-            @RequestPart("fieldCode") String fieldCode,
 
             @PathVariable("staffID") String staffID
     ){
@@ -123,7 +121,6 @@ public class StaffController {
         staffDTO.setPhoneNumber(phoneNumber);
         staffDTO.setEmail(email);
         staffDTO.setRole(Role.valueOf(role));
-        staffDTO.setFieldCode(fieldCode);
         staffService.updateStaff(staffID, staffDTO);
     }
 }

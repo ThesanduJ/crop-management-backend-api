@@ -37,14 +37,4 @@ public class StaffEntity implements SuperEntity {
     @Column(unique = true, nullable = false)
     private String email;
     private Role role;
-
-    @ManyToOne
-    @JoinColumn(name = "fieldCode")
-    private FieldEntity field;
-    @OneToMany(mappedBy = "staff",cascade = CascadeType.ALL)
-    private List<VehicleEntity> vehicles;
-    @OneToMany(mappedBy = "staff",cascade = CascadeType.ALL)
-    private List<EquipmentEntity> equipments;
-    @OneToMany(mappedBy="staff",cascade = CascadeType.ALL)
-    private List <LogEntity> logs;
 }

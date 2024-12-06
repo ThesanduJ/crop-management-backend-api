@@ -26,9 +26,4 @@ public class CropEntity implements SuperEntity {
     private String cropCategory;
     @Column(nullable = false)
     private String cropSeason;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fieldCode", nullable = false)
-    private FieldEntity field;
-    @OneToMany(mappedBy="crop",cascade = CascadeType.ALL)
-    private List<LogEntity> logs;
 }

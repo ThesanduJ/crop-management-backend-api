@@ -28,5 +28,4 @@ public class StaffDTO implements StaffStatus {
     private String phoneNumber;
     private String email;
     private Role role;
-    private String fieldCode;
 }

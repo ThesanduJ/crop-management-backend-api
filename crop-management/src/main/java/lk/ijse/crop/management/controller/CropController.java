@@ -17,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/crops")
+@CrossOrigin
 public class CropController {
     @Autowired
     private CropService cropService;
@@ -27,8 +28,7 @@ public class CropController {
             @RequestPart("cropScientificName") String cropScientificName,
             @RequestPart("cropImage") MultipartFile cropImage,
             @RequestPart("cropCategory") String cropCategory,
-            @RequestPart("cropSeason") String cropSeason,
-            @RequestPart ("fieldCode") String fieldCode
+            @RequestPart("cropSeason") String cropSeason
     ) {
         // profilePic ----> Base64
         String base64ProPic = "";
@@ -44,7 +44,6 @@ public class CropController {
             cropDTO.setCropImage(base64ProPic);
             cropDTO.setCropCategory(cropCategory);
             cropDTO.setCropSeason(cropSeason);
-            cropDTO.setFieldCode(fieldCode);
 
             cropService.saveCrop(cropDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -85,7 +84,6 @@ public class CropController {
             @RequestPart("cropImage") MultipartFile cropImage,
             @RequestPart("cropCategory") String cropCategory,
             @RequestPart("cropSeason") String cropSeason,
-            @RequestPart ("fieldCode") String fieldCode,
             @PathVariable("cropCode") String cropCode
     ) {
         // profilePic ----> Base64
@@ -103,7 +101,6 @@ public class CropController {
         cropDTO.setCropImage(base64ProPic);
         cropDTO.setCropCategory(cropCategory);
         cropDTO.setCropSeason(cropSeason);
-        cropDTO.setFieldCode(fieldCode);
 
         cropService.updateCrop(cropCode, cropDTO);
     }

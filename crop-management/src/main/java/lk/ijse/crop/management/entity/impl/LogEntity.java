@@ -19,13 +19,4 @@ public class LogEntity implements SuperEntity {
     @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String logImage;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fieldCode", nullable = false)
-    private FieldEntity field;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cropCode", nullable = false)
-    private CropEntity crop;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "staffID", nullable = false)
-    private StaffEntity staff;
 }

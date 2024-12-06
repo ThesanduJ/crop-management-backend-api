@@ -18,10 +18,5 @@ public class EquipmentEntity implements SuperEntity {
     private String equipmentType;
     private String equipmentStatus;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "staffID")
-    private StaffEntity staff;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fieldCode")
-    private FieldEntity field;
+
 }

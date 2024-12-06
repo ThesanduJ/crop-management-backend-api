@@ -28,8 +28,7 @@ public class VehicleController {
             @RequestPart("vehicleCategory") String vehicleCategory,
             @RequestPart("fuelType") String fuelType,
             @RequestPart("status") String status,
-            @RequestPart("remarks") String remarks,
-            @RequestPart("staff") String staff
+            @RequestPart("remarks") String remarks
     ) {
 
         try {
@@ -44,7 +43,6 @@ public class VehicleController {
             vehicleDTO.setFuelType(fuelType);
             vehicleDTO.setStatus(status);
             vehicleDTO.setRemarks(remarks);
-            vehicleDTO.setStaffId(staff);
 
             vehicleService.saveVehicle(vehicleDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -82,7 +80,6 @@ public class VehicleController {
             @RequestPart("fuelType") String fuelType,
             @RequestPart("status") String status,
             @RequestPart("remarks") String remarks,
-            @RequestPart("staff") String staff,
 
             @PathVariable("vehicleCode") String vehicleCode
     ){
@@ -94,7 +91,6 @@ public class VehicleController {
         vehicleDTO.setFuelType(fuelType);
         vehicleDTO.setStatus(status);
         vehicleDTO.setRemarks(remarks);
-        vehicleDTO.setStaffId(staff);
         vehicleService.updateVehicle(vehicleCode,vehicleDTO);
     }
 }

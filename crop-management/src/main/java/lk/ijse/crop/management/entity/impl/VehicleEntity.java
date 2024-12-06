@@ -19,8 +19,4 @@ public class VehicleEntity implements SuperEntity {
     private String fuelType;
     private String status;
     private String remarks;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "staffID", nullable = false)
-    private StaffEntity staff;
 }
