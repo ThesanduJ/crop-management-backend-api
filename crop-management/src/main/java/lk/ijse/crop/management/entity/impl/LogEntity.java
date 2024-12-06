@@ -20,10 +20,13 @@ public class LogEntity implements SuperEntity {
     private String logImage;
 
     @ManyToOne
-    @JoinColumn(name = "field_code")
+    @JoinColumn(name = "fieldCode", nullable = false)
     private FieldEntity field;
     @ManyToOne
-    @JoinColumn(name = "staff_id")
+    @JoinColumn(name = "cropCode", nullable = false)
+    private CropEntity crop;
+    @ManyToOne
+    @JoinColumn(name = "staffID", nullable = false)
     private StaffEntity staff;
 
 }

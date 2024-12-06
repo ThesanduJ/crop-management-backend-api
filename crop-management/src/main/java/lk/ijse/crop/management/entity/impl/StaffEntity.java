@@ -38,8 +38,13 @@ public class StaffEntity implements SuperEntity {
     private String email;
     private Role role;
 
+    @ManyToOne
+    @JoinColumn(name = "fieldCode")
+    private FieldEntity field;
     @OneToMany(mappedBy = "staff")
-    private List<LogEntity> logs;
-    @OneToMany(mappedBy = "assignedStaff")
     private List<VehicleEntity> vehicles;
+    @OneToMany(mappedBy = "staff")
+    private List<EquipmentEntity> equipments;
+    @OneToMany(mappedBy="staff")
+    private List <LogEntity> logs;
 }

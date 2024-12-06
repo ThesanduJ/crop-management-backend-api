@@ -24,12 +24,7 @@ public class FieldEntity implements SuperEntity {
     @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String fieldImage02;
 
-    @ManyToMany
-    @JoinTable(name = "field_crop", joinColumns = @JoinColumn(name = "field_code"), inverseJoinColumns = @JoinColumn(name = "crop_code"))
-    private List<CropEntity> crops;
-    @OneToMany(mappedBy = "field")
-    private List<EquipmentEntity> equipmentList;
-    @OneToMany(mappedBy = "field")
-    private List<LogEntity> logs;
+    @OneToMany(mappedBy="field")
+    private List <LogEntity> logs;
 
 }

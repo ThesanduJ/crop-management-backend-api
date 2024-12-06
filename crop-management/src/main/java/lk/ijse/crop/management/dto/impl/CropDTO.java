@@ -15,4 +15,5 @@ public class CropDTO implements CropStatus {
     private String cropImage;
     private String cropCategory;
     private String cropSeason;
+    private String fieldCode;
 }

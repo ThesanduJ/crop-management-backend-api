@@ -19,6 +19,7 @@ public class VehicleEntity implements SuperEntity {
     private String fuelType;
     private String status;
     private String remarks;
-
-    @ManyToOne @JoinColumn(name = "staff_id") private StaffEntity assignedStaff;
+    @ManyToOne
+    @JoinColumn(name = "staffId", nullable = false)
+    private StaffEntity staff;
 }

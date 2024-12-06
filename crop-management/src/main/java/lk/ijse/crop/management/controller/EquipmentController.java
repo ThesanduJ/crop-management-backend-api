@@ -25,7 +25,9 @@ public class EquipmentController {
     public ResponseEntity<Void> saveEquipment(
             @RequestPart("equipmentName") String equipmentName,
             @RequestPart("equipmentType") String equipmentType,
-            @RequestPart("equipmentStatus") String  equipmentStatus
+            @RequestPart("equipmentStatus") String  equipmentStatus,
+            @RequestPart("fieldCode") String fieldCode,
+            @RequestPart("staffID") String  staffCode
 
     ){
         try{
@@ -36,6 +38,8 @@ public class EquipmentController {
             equipmentDTO.setEquipmentName(equipmentName);
             equipmentDTO.setEquipmentType(equipmentType);
             equipmentDTO.setEquipmentStatus(equipmentStatus);
+            equipmentDTO.setFieldCode(fieldCode);
+            equipmentDTO.setStaffId(staffCode);
 
             equipmentService.saveEquipment(equipmentDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -72,6 +76,8 @@ public class EquipmentController {
             @RequestPart("equipmentName") String equipmentName,
             @RequestPart("equipmentType") String equipmentType,
             @RequestPart("equipmentStatus") String  equipmentStatus,
+            @RequestPart("fieldCode") String fieldCode,
+            @RequestPart("staffID") String  staffCode,
 
             @PathVariable("equipmentID") String equipmentID
     ){
@@ -81,6 +87,8 @@ public class EquipmentController {
         equipmentDTO.setEquipmentName(equipmentName);
         equipmentDTO.setEquipmentType(equipmentType);
         equipmentDTO.setEquipmentStatus(equipmentStatus);
+        equipmentDTO.setFieldCode(fieldCode);
+        equipmentDTO.setStaffId(staffCode);
         equipmentService.updateEquipment(equipmentID,equipmentDTO);
     }
 

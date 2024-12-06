@@ -19,7 +19,10 @@ public class EquipmentEntity implements SuperEntity {
     private String equipmentStatus;
 
     @ManyToOne
-    @JoinColumn(name = "field_code")
+    @JoinColumn(name = "staffId")
+    private StaffEntity staff;
+    @ManyToOne
+    @JoinColumn(name = "fieldCode")
     private FieldEntity field;
 
 }
