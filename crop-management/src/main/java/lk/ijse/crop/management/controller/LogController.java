@@ -16,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/logs")
+@CrossOrigin
 public class LogController {
     @Autowired
     private LogService logService;
@@ -24,7 +25,10 @@ public class LogController {
     public ResponseEntity<Void> saveLogs(
             @RequestPart("logDate") String logDate,
             @RequestPart("logDetails") String logDetails,
-            @RequestPart("logImage") MultipartFile logImage
+            @RequestPart("logImage") MultipartFile logImage,
+            @RequestPart("fieldCode") String fieldCode,
+            @RequestPart("cropCode") String cropCode,
+            @RequestPart("staffID") String staffID
     ) {
         // profilePic ----> Base64
         String base64ProPic = "";
@@ -39,6 +43,10 @@ public class LogController {
             logDTO.setLogDate(logDate);
             logDTO.setLogDetails(logDetails);
             logDTO.setLogImage(base64ProPic);
+
+            logDTO.setFieldCode(fieldCode);
+            logDTO.setCropCode(cropCode);
+            logDTO.setStaffID(staffID);
 
             logService.saveLogs(logDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -77,7 +85,12 @@ public class LogController {
             @RequestPart("logDate") String logDate,
             @RequestPart("logDetails") String logDetails,
             @RequestPart("logImage") MultipartFile logImage,
+            @RequestPart("fieldCode") String fieldCode,
+            @RequestPart("cropCode") String cropCode,
+            @RequestPart("staffID") String staffID,
+
             @PathVariable("logCode")String logCode
+
     ){
         String base64ProPic = "";
 
@@ -91,7 +104,11 @@ public class LogController {
         logDTO.setLogCode(logCode);
         logDTO.setLogDate(logDate);
         logDTO.setLogDetails(logDetails);
+        logDTO.setFieldCode(fieldCode);
+        logDTO.setCropCode(cropCode);
+        logDTO.setStaffID(staffID);
         logDTO.setLogImage(base64ProPic);
-        logService.saveLogs(logDTO);
+
+        logService.updateLogs(logCode,logDTO);
     }
 }

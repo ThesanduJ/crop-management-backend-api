@@ -17,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/vehicle")
+@CrossOrigin
 public class VehicleController {
     @Autowired
     private VehicleService vehicleService;
@@ -27,7 +28,8 @@ public class VehicleController {
             @RequestPart("vehicleCategory") String vehicleCategory,
             @RequestPart("fuelType") String fuelType,
             @RequestPart("status") String status,
-            @RequestPart("remarks") String remarks
+            @RequestPart("remarks") String remarks,
+            @RequestPart("staffID")String staffID
     ) {
 
         try {
@@ -42,6 +44,7 @@ public class VehicleController {
             vehicleDTO.setFuelType(fuelType);
             vehicleDTO.setStatus(status);
             vehicleDTO.setRemarks(remarks);
+            vehicleDTO.setStaffId(staffID);
 
             vehicleService.saveVehicle(vehicleDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -79,6 +82,7 @@ public class VehicleController {
             @RequestPart("fuelType") String fuelType,
             @RequestPart("status") String status,
             @RequestPart("remarks") String remarks,
+            @RequestPart("staffID")String staffID,
 
             @PathVariable("vehicleCode") String vehicleCode
     ){
@@ -90,6 +94,7 @@ public class VehicleController {
         vehicleDTO.setFuelType(fuelType);
         vehicleDTO.setStatus(status);
         vehicleDTO.setRemarks(remarks);
+        vehicleDTO.setStaffId(staffID);
         vehicleService.updateVehicle(vehicleCode,vehicleDTO);
     }
 }

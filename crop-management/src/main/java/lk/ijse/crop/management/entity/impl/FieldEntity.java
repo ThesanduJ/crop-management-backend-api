@@ -1,13 +1,12 @@
 package lk.ijse.crop.management.entity.impl;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lk.ijse.crop.management.entity.SuperEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,4 +23,8 @@ public class FieldEntity implements SuperEntity {
     private String fieldImage01;
     @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String fieldImage02;
+
+    @OneToMany(mappedBy="field")
+    private List <LogEntity> logs;
+
 }
