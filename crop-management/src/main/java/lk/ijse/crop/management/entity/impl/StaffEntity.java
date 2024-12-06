@@ -37,4 +37,9 @@ public class StaffEntity implements SuperEntity {
     @Column(unique = true, nullable = false)
     private String email;
     private Role role;
+
+    @OneToMany(mappedBy = "staff")
+    private List<LogEntity> logs;
+    @OneToMany(mappedBy = "assignedStaff")
+    private List<VehicleEntity> vehicles;
 }

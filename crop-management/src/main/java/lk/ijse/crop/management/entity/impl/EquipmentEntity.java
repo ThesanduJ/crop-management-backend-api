@@ -18,5 +18,8 @@ public class EquipmentEntity implements SuperEntity {
     private String equipmentType;
     private String equipmentStatus;
 
+    @ManyToOne
+    @JoinColumn(name = "field_code")
+    private FieldEntity field;
 
 }

@@ -26,4 +26,6 @@ public class CropEntity implements SuperEntity {
     private String cropCategory;
     @Column(nullable = false)
     private String cropSeason;
+
+    @ManyToMany(mappedBy = "crops") private List<FieldEntity> fields;
 }

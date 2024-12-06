@@ -19,4 +19,11 @@ public class LogEntity implements SuperEntity {
     @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String logImage;
 
+    @ManyToOne
+    @JoinColumn(name = "field_code")
+    private FieldEntity field;
+    @ManyToOne
+    @JoinColumn(name = "staff_id")
+    private StaffEntity staff;
+
 }
